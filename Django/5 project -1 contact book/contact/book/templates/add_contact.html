@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}Add Contact{% endblock  %}
+
+{% block h1_title %}Add Contact{% endblock  %}
+
+{% block contant %}
+
+<form action="{% if user.id != None %} /update/{{ user.id }}/data {% endif %}" method="post">
+    {% csrf_token %}
+    <label for="fullname" class="form-label">Name</label>
+    <input type="text" id="fullname" name="name" class="form-control" value="{{user.name}}">
+    <br>
+    <label for="email" class="form-label">Email</label>
+    <input type="Email" id="email" name="email" class="form-control" aria-describedby="passwordHelpBlock"
+        value="{{user.email}}">
+    <br>    
+    <label for="Number" class="form-label">Number</label>
+    <input type="number" id="Number" class="form-control" aria-describedby="passwordHelpBlock" name="c_number" value="{{user.c_number}}">
+    <br>
+    <label for="" class="form-label">Gender</label><br>
+    <input type="radio" class="form-check-input" name="gender" id="male" value="Male" {% if user.gender == 'Male' %} checked {% endif %} >
+    <label class="form-check-label " for="male" class="form-label">Male</label>&nbsp;&nbsp;&nbsp;
+    <input type="radio" class="form-check-input" name="gender" id="female" value="Female" {% if user.gender == 'Female' %} checked {% endif %} >
+    <label class="form-check-label " for="female" class="form-label">Female</label>&nbsp;&nbsp;&nbsp;
+    <br><br>
+
+    <label for="city" class="form-label">City</label>
+    <input type="text" id="city" name="city" class="form-control" value="{{user.city}}">
+   
+    <br>
+
+    <label for="address" class="form-label">Address</label><br>
+    <textarea name="address" id="address" class="form-control">{{user.address}}</textarea>
+
+    <br><br>
+    <input type="submit" value="submit" name="submit" class="btn btn-primary" >
+
+</form>
+{% endblock  %}

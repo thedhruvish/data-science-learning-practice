@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}User Log{% endblock  %}
+
+{% block h1_title %}User Log{% endblock  %}
+{% block nav_bar %} {% endblock  %}
+
+{% block contant %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Eamil</th>
+        <th scope="col">Log In</th>
+        <th scope="col">Log Out</th>
+        <th scope="col">Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in data %}
+      <tr>
+        <th scope="row">{{i.id}}</th>
+        <th >{{i.email}}</th> 
+        <td>{{i.login}}</td>
+        <td>{{i.logout}}</td> 
+        <td>{{i.duration}}</td> 
+
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock  %}

@@ -1,0 +1,118 @@
+{% include "layout/header.html" %}
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Inquiry Form</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active">Inquiry Form</li>
+          </ol>
+        </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Enter Details </h3>
+            </div>
+            <form method="post" enctype="multipart/form-data"
+              action='{% if data %}/inquiry/update/{{data.id}}/{% endif %}'>
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="name">Enter Name</label>
+                      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name"
+                        value="{{data.name}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="contact">Contact</label>
+                      <input type="number" class="form-control" id="contact" placeholder="Contact" name="contact"
+                        value="{{data.contact}}">
+                    </div>
+                    <div class='form-group'>
+                      <label>Course</label>
+                      <select class="form-control select2" style="width: 100%;" name="course">
+                        <option selected disabled>---Selection---</option>
+                        {% for i in course %}
+                        <option value="{{i.c_name}}" {% if i.c_name == data.course %} selected{% endif %}>{{i.c_name}}
+                        </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class='form-group'>
+                      <label>Branch</label>
+                      <select class="form-control select2" style="width: 100%;" name="branch">
+                        <option selected disabled>---Selection---</option>
+                        {% for i in branch %}
+                        <option value="{{i.b_name}}" {% if data %} {% if i.b_name == data.branch %} selected {% endif %}
+                          {% else %} {% if i.b_name == user.branch %} selected{% endif %} {% endif %}>{{i.b_name}}
+                        </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class='form-group'>
+                      <label>Inquiry By</label>
+                      <select class="form-control select2" style="width: 100%;" name="inquiryby">
+                        <option selected disabled>---Selection---</option>
+                        {% for i in inq %}
+                        <option value="{{i.name}}" {% if data %} {% if i.name == data.inquiryby %} selected {% endif %} {%
+                          else %} {% if i.id == user.id %} selected{% endif %} {% endif %}>{{i.name}}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Details</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..."
+                          name="detail">{{data.detail}}</textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="total_Fee">total_Fee</label>
+                        <input type="number" class="form-control" id="total_Fee" placeholder="total_Fee" name="total_fee"
+                          value="{{data.total_fee}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="date">date</label>
+                        <input type="datetime-local" class="form-control" id="date" placeholder="date" name="date"
+                          value="{{data.date}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="status">Enter status</label>
+                        <input type="text" class="form-control" placeholder="Enter status" name="status"
+                          value="{{data.status}}">
+                      </div>
+                      <div class="form-group">
+                        <label for="status">Enter References</label>
+                        <input type="text" class="form-control" placeholder="Enter References" name="ref"
+                          value="{{data.ref}}">
+                      </div>
+                    </div>
+                    <div class="card-footer">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+    </div>
+  </section>
+</div>
+{% include "layout/footer.html" %}

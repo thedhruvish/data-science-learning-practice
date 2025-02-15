@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block h1_title %}Welcome to {{username}} {%endblock %} 
+{% block contant %}
+
+<form action="" method="get">
+  search: <input type="text" name='q'>
+  <button
+    type="submit"
+    class="btn btn-primary"
+  >
+    Submit
+  </button>
+  
+</form>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in page_obj %}
+    <tr>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.name}}</td>
+        <td>{{i.email}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}{% if q %}&q={{q}}{% endif %}"> Previous</a>
+{% endif %}
+
+<span class="current-page">{{ page_obj.number }}</span>
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }} {% if q %}&q={{q}}{% endif %}">Next </a>
+{% endif %}
+
+{% endblock %}
