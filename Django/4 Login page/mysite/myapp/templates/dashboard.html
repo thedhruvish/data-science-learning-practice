@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block h1_title %}Welcome to {% for i in user %}  {{i.name}}{% endfor %}{% endblock %}
+{% block contant %}
+
+<a href="/login" class="btn btn-primary">logout</a>
+
+
+{% endblock  %}
+

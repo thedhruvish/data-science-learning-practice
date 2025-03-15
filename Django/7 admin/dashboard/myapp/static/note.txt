@@ -1,0 +1,3 @@
+https://adminlte.io/
+
+to install the templetes and move the disk and plugins folder in this folder

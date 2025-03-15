@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}View Contact{% endblock  %}
+
+{% block h1_title %}View Contact{% endblock  %}
+
+{% block contant %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Eamil</th>
+        <th scope="col">Number</th>
+        <th scope="col">Gender</th>
+        <th scope="col">city</th>
+        <th scope="col">Address</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in data %}
+      <tr>
+        <th scope="row">{{i.name}}</th>
+        <td>{{i.email}}</td>
+        <td>{{i.c_number}}</td>
+        <td>{{i.gender}}</td>
+        <td>{{i.city}}</td>
+        <td>{{i.address}}</td>
+        <td><a href="/edit/{{i.id}}" class="btn btn-success">Edit</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock  %}

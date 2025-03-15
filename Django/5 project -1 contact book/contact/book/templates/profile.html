@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Edit Profile{% endblock  %}
+
+{% block h1_title %}Edit Profile{% endblock  %}
+
+
+{% block contant %}
+<div>
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+    </div>    
+    <button type="submit" class="btn btn-primary me-4">Submit</button>
+    {% comment %} <a href="/register" class="btn btn-primary">Register</a> {% endcomment %}
+  </form>
+</div>
+  {% endblock  %}

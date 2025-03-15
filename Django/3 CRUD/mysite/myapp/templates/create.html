@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block show %} show {% endblock  %}
+{% block show_url %}show {% endblock  %}
+
+{% block title %} Form - data{% endblock  %}
+
+{% block h1_title %}Enter of Details{% endblock  %}
+
+{% block form_data %}
+<form action="{% if user.id != None %} /update/{{ user.id }}/data {% endif %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="fullname" class="form-label">Full Name</label>
+    <input type="text" id="fullname" name="name" class="form-control" value="{{user.name}}">
+    <br>
+    <label for="email" class="form-label">Email</label>
+    <input type="Email" id="email" name="email" class="form-control" aria-describedby="passwordHelpBlock"
+        value="{{user.email}}">
+
+    <br>
+    <label for="inputPassword5" class="form-label">Password</label>
+    <input type="password" id="inputPassword5" name="password" class="form-control"
+        aria-describedby="passwordHelpBlock" value="{{user.password}}">
+
+
+    <br>
+    <label for="Number" class="form-label">Number</label>
+    <input type="number" id="Number" class="form-control" aria-describedby="passwordHelpBlock" name="number" value="{{user.number}}">
+
+    <br>
+    <label for="" class="form-label">Gender</label><br>
+    <input type="radio" class="form-check-input" name="gender" id="male" value="Male" {% if user.gender == 'Male' %} checked {% endif %} >
+    <label class="form-check-label" for="male" class="form-label">Male</label>&nbsp;&nbsp;&nbsp;
+    <input type="radio" class="form-check-input" name="gender" id="female" value="Female" {% if user.gender == 'Female' %} checked {% endif %} >
+    <label class="form-check-label" for="female" class="form-label">Female</label>&nbsp;&nbsp;&nbsp;
+    <br>
+    <br>
+
+    <label class="form-label" for="" class="form-label">Hobby</label>
+    <br>
+
+    <input class="form-check-input" name="hobby" type="checkbox" value="Cricket" id="Cricket" {% if "Cricket" in user.hobby %} checked {% endif %}  >
+    <label class="form-check-label" for="Cricket">Cricket</label>&nbsp;&nbsp;&nbsp; 
+    <input class="form-check-input" name="hobby" type="checkbox" value="Reading" id="Reading"  {% if  "Reading" in user.hobby %} checked {% endif %}  >
+    <label class="form-check-label" for="Reading">Reading</label>&nbsp;&nbsp;&nbsp;
+    <input class="form-check-input" name="hobby" type="checkbox" value="Dance" id="Dance"  {% if  "Dance" in user.hobby %} checked {% endif %}  >
+    <label class="form-check-label" for="Dance">Dance</label>&nbsp;&nbsp;&nbsp;
+    <input class="form-check-input" name="hobby" type="checkbox" value="Acting" id="Acting"  {% if  "Acting" in user.hobby  %} checked {% endif %}  >
+    <label class="form-check-label" for="Acting">Acting</label>&nbsp;&nbsp;&nbsp;
+
+
+    <br><br>
+    <label for="city" class="form-label">City</label>
+    <select id="city" name="city" class="form-select" aria-label="Default select example">
+        <option  {% if user %} {% else %} selected disabled {% endif %} >---- Select ----</option>
+        <option value="Surat" {% if user.city == "Surat" %} selected {% endif %}>Surat</option>
+        <option value="Bhavnagar" {% if user.city == "Bhavnagar" %}selected{% endif %}>Bhavnagar</option>
+        <option value="Rajkot" {% if user.city == "Rajkot" %}selected{% endif %}>Rajkot</option>
+        <option value="Bharuch" {% if user.city == "Bharuch" %}selected{% endif %}>Bharuch</option>
+    </select>
+    <br>
+
+    <label for="formFile" class="form-label">Image</label>
+    <input class="form-control" type="file" id="formFile" name="image">
+    <br><br>
+    <input type="submit" value="submit" name="submit" class="btn btn-primary" >
+
+</form>
+{% endblock  %}
